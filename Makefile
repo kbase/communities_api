@@ -97,6 +97,8 @@ build-service:
 build-libs:
 	api2js -url $(CLIENT_URL) -outfile docs/CommunitiesAPI.json
 	definition2typedef -json docs/CommunitiesAPI.json -typedef docs/CommunitiesAPI.typedef -service CommunitiesAPI
+	sed -e "s/in\-progress/in_progress/" docs/CommunitiesAPI.typedef > docs/CommunitiesAPI.typedef.tmp
+	mv docs/CommunitiesAPI.typedef.tmp docs/CommunitiesAPI.typedef
 	compile_typespec --impl CommunitiesAPI --js CommunitiesAPI --py CommunitiesAPI docs/CommunitiesAPI.typedef lib
 	@echo "done building typespec libs"
 
