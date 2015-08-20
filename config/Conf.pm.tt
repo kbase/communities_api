@@ -1,0 +1,47 @@
+package Conf;
+
+#####################################################################
+# Main paths
+#####################################################################
+
+$SITE     = "[% api_dir %]";
+$temp     = $SITE."/site/CGI/Tmp";
+$bin      = $SITE."/bin";
+$url_base = "";
+
+$api_resource_dir  = "resources";
+$api_resource_path = $SITE."/site/lib/MGRAST/".$api_resource_dir;
+
+#####################################################################
+# Server Config  
+#####################################################################
+
+# URLs
+$idserver_url = "http://kbase.us/services/idserver";
+$awe_url      = "";
+$shock_url    = "";
+
+# JobDB
+$mgrast_jobcache_db       = "JobDB";
+$mgrast_jobcache_host     = "";
+$mgrast_jobcache_user     = "";
+$mgrast_jobcache_password = "";
+
+# Analysis DB 
+$mgrast_db     = "mgrast_analysis";
+$mgrast_dbhost = "";
+$mgrast_dbuser = "";
+$mgrast_dbpass = "";
+
+# search settings
+$job_collect = "metagenomes";
+$job_solr    = "";
+
+#####################################################################
+# Misc Config  
+#####################################################################
+
+$r_executable      = "[% r_path %]";
+$validate_metadata = "validate_metadata";
+
+1;

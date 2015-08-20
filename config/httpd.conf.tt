@@ -1,0 +1,40 @@
+NameVirtualHost *:[% api_port %]
+Listen [% api_port %]
+LoadModule cgi_module modules/mod_cgi.so
+LoadModule alias_module modules/mod_alias.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule mime_magic_module modules/mod_mime_magic.so
+LoadModule authz_host_module modules/mod_authz_host.so
+LoadModule log_config_module modules/mod_log_config.so
+MIMEMagicFile conf/magic
+TypesConfig /etc/mime.types
+ServerName localhost
+CustomLog logs/access.log combined
+PidFile logs/httpd.pid
+
+
+<VirtualHost *:[% api_port %]>
+	ServerAdmin webmaster@localhost
+
+	<Files ~ "\.(pl|cgi)$">
+        	Options +ExecCGI
+	</Files>
+
+        DocumentRoot [% cgi_dir %]
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+        ScriptAlias /cgi-bin/ [% cgi_dir %]
+        <Directory "[% cgi_dir %]">
+		AllowOverride None
+		Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+		AddHandler cgi-script .pl .cgi
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	ErrorLog logs/error.log
+	LogLevel warn
+</VirtualHost>

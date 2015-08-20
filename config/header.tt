@@ -1,0 +1,13 @@
+#![% perl_path %]
+
+BEGIN {
+    unshift @INC, qw(
+              [% api_dir %]/site/lib
+              [% api_dir %]/site/lib/WebApplication
+              [% api_dir %]/site/lib/PPO
+              [% api_dir %]/site/lib/MGRAST
+              [% api_dir %]/site/lib/Babel
+              [% api_dir %]/conf
+        );
+}
+########################################################################
